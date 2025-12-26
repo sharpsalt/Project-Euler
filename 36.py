@@ -42,9 +42,9 @@ class IOWrapper(IOBase):
         self.read=lambda:self.buffer.read().decode("ascii")
         self.readline=lambda:self.buffer.readline().decode("ascii")
 
-if os.path.exists("input.txt"):
-    sys.stdin=open("input.txt", "r")
-    sys.stdout=open("output.txt", "w")
+#if os.path.exists("input.txt"):
+#    sys.stdin=open("input.txt", "r")
+#    sys.stdout=open("output.txt", "w")
 # sys.stdin,sys.stdout = IOWrapper(sys.stdin),IOWrapper(sys.stdout)
 if sys.version_info[0]<3:
     sys.stdin,sys.stdout=FastIO(sys.stdin),FastIO(sys.stdout)
@@ -53,3 +53,14 @@ else:
 input=lambda:sys.stdin.readline().rstrip("\r\n")
 
 #bootstarp-pyboot
+
+def palindrome(pp:str)->bool:
+    x=str(pp)
+    y=x[::-1]
+    # print(x,y)
+    return x==y
+
+
+for i in range(1,10000):
+    if palindrome(i):
+        print(i,bin(i)[2:])
