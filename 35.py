@@ -1,6 +1,6 @@
 import os,sys
 from io import BytesIO,IOBase
-
+from itertools import permutations
 
 #Copied from https://codeforces.com/blog/entry/71884
 BUFSIZ=8192
@@ -54,25 +54,34 @@ input=lambda:sys.stdin.readline().rstrip("\r\n")
 
 #bootstarp-pyboot
 
-# prime=[True]*1000000
-# prime[0]=False
-# prime[1]=False
-# for i in range(2,len(prime)):
-#     if prime[i]:
-#         for j in range(2*i,len(prime),i):
-#             prime[j]=False
+prime=[True]*1000000
+prime[0]=False
+prime[1]=False
+for i in range(2,len(prime)):
+    if prime[i]:
+        for j in range(2*i,len(prime),i):
+            prime[j]=False
 
-def palindrome(s):
-    x=s
-    y=s[::-1]
-    # print(x,y)
-    return x==y
 
-xx=0
-for i in range(1,1000000):
-    x=str(i)
-    y=str(bin(i)[2:])
-    if palindrome(x) and palindrome(y):
-        xx+=i
-print(xx)
+primes=[]
+for i in range(2,len(prime)):
+    if prime[i]:
+        primes.append(i)
+
+x=0
+for i in primes:
+    flag=False
+    s=str(i)
+    for j in range(len(s)):
+        if not prime[int(s[j:]+s[:j])]:
+            flag=True
+    if flag==False:
+        x+=1
+print(x)
+
+
+
+
+
+
 

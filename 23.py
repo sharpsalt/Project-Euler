@@ -54,25 +54,23 @@ input=lambda:sys.stdin.readline().rstrip("\r\n")
 
 #bootstarp-pyboot
 
-# prime=[True]*1000000
-# prime[0]=False
-# prime[1]=False
-# for i in range(2,len(prime)):
-#     if prime[i]:
-#         for j in range(2*i,len(prime),i):
-#             prime[j]=False
+#perfect number like sum of all divisor whi hota
+#abundant mtlb jyada
+#deficient mtlb kam
+#12 is smallest abundant number
+#24 is smallest number which can be represented as a sum of wto abundan tnumber basically 12+12
 
-def palindrome(s):
-    x=s
-    y=s[::-1]
-    # print(x,y)
-    return x==y
-
-xx=0
-for i in range(1,1000000):
-    x=str(i)
-    y=str(bin(i)[2:])
-    if palindrome(x) and palindrome(y):
-        xx+=i
-print(xx)
-
+#pehle sara s=abundant nikalo phir use O(n^2) me hojayega
+n=28124
+div=[1 for i in range(n)]
+for i in range(2,n):
+    for j in range(2*i,n,i):
+        div[j]+=i
+abundant=[]
+test=[]
+for i in range(2,len(div)):
+    if div[i]>i:
+        abundant.append(i)
+    # else:
+    #     test.append(i)
+#ab bas mereko wo saare element choose krne hai jo ki buildup nh hopaayenge by sum of any two of it 

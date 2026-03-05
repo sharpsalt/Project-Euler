@@ -1,5 +1,6 @@
 import os,sys
 from io import BytesIO,IOBase
+import math
 
 
 #Copied from https://codeforces.com/blog/entry/71884
@@ -54,25 +55,8 @@ input=lambda:sys.stdin.readline().rstrip("\r\n")
 
 #bootstarp-pyboot
 
-# prime=[True]*1000000
-# prime[0]=False
-# prime[1]=False
-# for i in range(2,len(prime)):
-#     if prime[i]:
-#         for j in range(2*i,len(prime),i):
-#             prime[j]=False
-
-def palindrome(s):
-    x=s
-    y=s[::-1]
-    # print(x,y)
-    return x==y
-
 xx=0
-for i in range(1,1000000):
-    x=str(i)
-    y=str(bin(i)[2:])
-    if palindrome(x) and palindrome(y):
+for i in range(2,1000000):
+    if i==sum(int(d)**5 for d in str(i)):
         xx+=i
 print(xx)
-

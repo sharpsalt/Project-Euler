@@ -54,25 +54,21 @@ input=lambda:sys.stdin.readline().rstrip("\r\n")
 
 #bootstarp-pyboot
 
-# prime=[True]*1000000
-# prime[0]=False
-# prime[1]=False
-# for i in range(2,len(prime)):
-#     if prime[i]:
-#         for j in range(2*i,len(prime),i):
-#             prime[j]=False
+fact=[0]*(11)
+fact[0]=1
+fact[1]=1
+for i in range(2,len(fact)):
+    fact[i]=fact[i-1]*i
 
-def palindrome(s):
-    x=s
-    y=s[::-1]
-    # print(x,y)
-    return x==y
+L=[]
+for i in range(3,1000005):
+    s=str(i)
+    l=list(s)
+    xx=0
+    for j in l:
+        # print(int(j))
+        xx+=fact[int(j)]
+    if xx==i:
+        L.append(i)
 
-xx=0
-for i in range(1,1000000):
-    x=str(i)
-    y=str(bin(i)[2:])
-    if palindrome(x) and palindrome(y):
-        xx+=i
-print(xx)
-
+print(sum(L))
