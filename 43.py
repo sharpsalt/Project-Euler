@@ -2,6 +2,7 @@ import os,sys
 from io import BytesIO,IOBase
 from bisect import bisect_left,bisect_right
 import math
+from itertools import permutations
 
 
 #Copied from https://codeforces.com/blog/entry/71884
@@ -56,25 +57,24 @@ input=lambda:sys.stdin.readline().rstrip("\r\n")
 
 #bootstarp-pyboot
 
-#basically we have to find two pentagonal number such thauska sum bhi penagonal ho and difference bhi 
-#ye nikal lenge phir unka abs difference store krte jayenge jo sbse minimum hoga usko lelenge basically 
+primes = [2,3,5,7,11,13,17]
 
-P=[(i*(3*i-1))//2 for i in range(1,3000)]
+ans = 0
 
-mini=float('inf')
-def isPent(x):
-    n=(1 + math.sqrt(1+24*x))/6
-    return n.is_integer()
+for p in permutations('0123456789'):
+    if p[0]=='0':
+        continue
+        
+    if int(''.join(p[1:4]))%2!=0: continue
+    if int(''.join(p[2:5]))%3!=0: continue
+    if int(''.join(p[3:6]))%5!=0: continue
+    if int(''.join(p[4:7]))%7!=0: continue
+    if int(''.join(p[5:8]))%11!=0: continue
+    if int(''.join(p[6:9]))%13!=0: continue
+    if int(''.join(p[7:10]))%17!=0: continue
+    
+    ans+=int(''.join(p))
 
-for i in range(len(P)):
-    for j in range(i+1,len(P)):
-        d=P[j]-P[i]
-        s=P[j]+P[i]
-        if isPent(d) and isPent(s):
-            mini=min(mini,d)
-
-print(mini)
+print(ans)
 
 
-
- 

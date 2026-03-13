@@ -56,25 +56,23 @@ input=lambda:sys.stdin.readline().rstrip("\r\n")
 
 #bootstarp-pyboot
 
-#basically we have to find two pentagonal number such thauska sum bhi penagonal ho and difference bhi 
-#ye nikal lenge phir unka abs difference store krte jayenge jo sbse minimum hoga usko lelenge basically 
+def pandigital(x)->bool:
+    return len(x)==9 and set(x)==set("123456789")
 
-P=[(i*(3*i-1))//2 for i in range(1,3000)]
-
-mini=float('inf')
-def isPent(x):
-    n=(1 + math.sqrt(1+24*x))/6
-    return n.is_integer()
-
-for i in range(len(P)):
-    for j in range(i+1,len(P)):
-        d=P[j]-P[i]
-        s=P[j]+P[i]
-        if isPent(d) and isPent(s):
-            mini=min(mini,d)
-
-print(mini)
-
+L=[]
+for i in range(1000000,0,-1):
+    s=""
+    x=i
+    p=1
+    while len(s)<9:
+        xx=x*p
+        s+=(str(xx))
+        p+=1
+    if pandigital(s):
+        L.append(int(s))
+    # print(s)
+L.sort()
+print(L[-1])
 
 
- 
+
